@@ -8,7 +8,7 @@ mixin navDropItem(item)
     if page === item.page
         a(class="hover:text-white hover:no-underline flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-blue-300" href="#")=item.name
     else
-        a(x-route href=langHref + item.href class="hover:text-white hover:no-underline flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-zinc-800 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-zinc-300")=item.name
+        a(x-route href=langHref + item.href x-on:click="open = false" class="hover:text-white hover:no-underline flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-zinc-800 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-zinc-300")=item.name
 
 mixin navDrop(item)
     div(x-data="{ open: false }" x-on:click.outside="open = false")
