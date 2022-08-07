@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   // set locals, only providing error in development
   console.log(err.message)
 
@@ -44,6 +44,8 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render(getTemplateDir(req.isHeadless, 'error'), {
+    lang: req.lang,
+    langPath: req.langHref,
     nav: data.nav,
     locales: locales.supported
   });
