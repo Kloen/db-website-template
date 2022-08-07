@@ -8,6 +8,7 @@ const currentLanguage = require("./middleware/current-language");
 const isHeadless = require("./middleware/is-headless");
 
 const indexRouter = require('./routes/index');
+const {getTemplateDir} = require("./util/util");
 
 const app = express();
 
@@ -40,7 +41,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('screens/error');
+  res.render(getTemplateDir(req.isHeadless, 'error'));
 });
 
 module.exports = app;
