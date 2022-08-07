@@ -13,7 +13,10 @@ function navigate(path) {
 }
 
 document.addEventListener('alpine:init', () => {
-    Alpine.directive('route', (el, { expression }) => {
-        el.addEventListener("click", function(){navigate(expression)}, false);
+    Alpine.directive('route', (el) => {
+        el.addEventListener("click", function(event){
+            event.preventDefault()
+            navigate(el.href)
+        }, false);
     })
 })
