@@ -1,0 +1,24 @@
+block variables
+- const title = "Default Title"
+- const lang = "en"
+
+doctype html
+html(lang=lang prefix="og: http://ogp.me/ns#")
+    head
+        meta(charset='UTF-8')
+        meta(http-equiv='Content-Language' content=lang)
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(name='distribution' content='global')
+        meta(name='author' content='Klöen Lansfiel')
+        meta(name='robots' content='index,follow')
+        block meta
+
+        title=title
+
+        link(type='text/css' rel='stylesheet' href='/stylesheets/styles.css')
+        script(type='text/javascript' src="/vendor/alpine.min.js" defer)
+        block head-scripts
+
+    body(class="scrollbar-thin scrollbar-thumb-zinc-600 scrollbar-track-zinc-400")
+        block body
+        block body-scripts
