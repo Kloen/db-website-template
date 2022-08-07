@@ -31,12 +31,14 @@ function setTheme(theme) {
 }
 
 function toggleTheme() {
+    NProgress.start();
     const activeTheme = localStorage.getItem("user-theme");
     if (activeTheme === "light") {
         this.setTheme("dark");
     } else {
         this.setTheme("light");
     }
+    NProgress.done();
 }
 
 function switchLanguage(current, locales, code) {
