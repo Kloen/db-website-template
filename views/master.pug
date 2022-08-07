@@ -1,5 +1,5 @@
 block variables
-- const title = "Default Title"
+- const title = "Title"
 - const lang = "en"
 - let langHref = ""
 if langPath
@@ -17,7 +17,7 @@ html(lang=lang prefix="og: http://ogp.me/ns#")
         meta(name='robots' content='index,follow')
         block meta
 
-        title=title
+        title !{title} - !{nav.title}
 
         link(type='text/css' rel='stylesheet' href='/stylesheets/styles.css')
         link(type='text/css' rel='stylesheet' href='/vendor/nprogress/nprogress.css')
