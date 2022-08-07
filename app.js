@@ -9,6 +9,8 @@ const isHeadless = require("./middleware/is-headless");
 
 const indexRouter = require('./routes/index');
 const {getTemplateDir} = require("./util/util");
+const data = require("./data/data");
+const locales = require("./data/locales");
 
 const app = express();
 
@@ -41,7 +43,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render(getTemplateDir(req.isHeadless, 'error'));
+  res.render(getTemplateDir(req.isHeadless, 'error'), {
+    nav: data.nav,
+    locales: locales.supported
+  });
 });
 
 module.exports = app;
