@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Home",
+    "page": "home",
+    "href": "/"
+  },
+  {
+    "name": "Dropdown",
+    "child": [
+      {
+        "name": "Page 1",
+        "page": "page-1",
+        "href": "/page-1"
+      },
+      {
+        "name": "Page 2",
+        "page": "page-2",
+        "href": "/page-2"
+      },
+      {
+        "name": "Sub Pages",
+        "child": [
+          {
+            "name": "Sub Page 1",
+            "page": "sub-page-1",
+            "href": "/sub-page-1"
+          },
+          {
+            "name": "Sub Page 2",
+            "page": "sub-page-2",
+            "href": "/sub-page-2"
+          }
+        ]
+      }
+    ]
+  }
+]
