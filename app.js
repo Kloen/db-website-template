@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(currentLanguage.middleware)
+app.use(currentLanguage)
 app.use(isHeadless)
 
 app.use('/', indexRouter);
