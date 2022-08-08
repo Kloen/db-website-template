@@ -1,4 +1,4 @@
-function navigate(path) {
+function navigate(path, expression) {
     NProgress.start()
     fetch(path, {
         method: "GET",
@@ -7,16 +7,17 @@ function navigate(path) {
         const routerView = document.querySelector('#router-view');
         routerView.innerHTML = page
         window.Alpine?.initTree(routerView);
-        window.history.pushState(null, "", path);
+        document.title = expression
+        window.history.pushState(null, expression, path);
         NProgress.done()
     });
 }
 
 document.addEventListener('alpine:init', () => {
-    Alpine.directive('route', (el) => {
-        el.addEventListener("click", function(event){
+    Alpine.directive('route', (el, {expression}) => {
+        el.addEventListener("click", function (event) {
             event.preventDefault()
-            navigate(el.href)
+            navigate(el.href, expression)
         }, false);
     })
 })
