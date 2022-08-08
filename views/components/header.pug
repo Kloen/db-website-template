@@ -1,17 +1,16 @@
 mixin navItem(item)
-    if page === item.page
-        a(class="font-medium text-blue-300" href="#")=item.name
-    else
-        a(x-route=item.name href=langHref + item.href class="font-medium text-zinc-600 hover:text-zinc-400 dark:text-zinc-400 dark:hover:text-zinc-500")=item.name
+    a(x-route=item.name href=langHref + item.href
+        x-on:click="$data.currentPage = '" + item.page + "';"
+        :class="{'text-blue-300': $data.currentPage == '"+item.page+"', 'text-zinc-600 dark:text-zinc-400': $data.currentPage != '"+item.page+"'}"
+        class="font-medium hover:text-zinc-400 dark:hover:text-zinc-500")=item.name
 
 mixin navDropItem(item, isSub)
-    - let onClick = "open = false"
+    - let onClick ="$data.currentPage = '" + item.page + "'; $data.open = false"
     if (isSub)
-        - onClick += "; openSubMenu = false"
-    if page === item.page
-        a(x-on:click=onClick class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-blue-300" href="#")=item.name
-    else
-        a(x-route=item.name href=langHref + item.href x-on:click=onClick class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-zinc-800 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-zinc-300")=item.name
+        - onClick += "; $data.openSubMenu = false"
+    a(x-route=item.name href=langHref + item.href x-on:click=onClick
+        :class="{'text-blue-300': $data.currentPage == '"+item.page+"', 'text-zinc-600 dark:text-zinc-400': $data.currentPage != '"+item.page+"'}"
+        class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm hover:bg-zinc-100 dark:hover:bg-zinc-700 dark:hover:text-zinc-300")=item.name
 
 mixin navDrop(item)
     div(x-data="{ open: false }" x-on:click.outside="open = false;")
@@ -36,7 +35,7 @@ mixin navDropSubDrop(item)
                 +navDropItem(child, true)
 
 header(class="sticky top-0 relative flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white text-sm py-2 dark:bg-zinc-800 border-b border-zinc-700")
-    nav(class="w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" x-data="{ openMenu: false, openDB: false }")
+    nav(class="w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" x-data="{ openMenu: false, openDB: false, currentPage: '" + page + "'}")
         div(class="flex flex-wrap md:flex-nowrap justify-between items-center w-full")
             div(class="flex md:flex-none")
                 img(class="mr-3 h-10" src="https://www.kloenlansfiel.com/img/projects/icons/alchemy-stars.webp" alt="Alchemy Stars")
