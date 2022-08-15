@@ -24,12 +24,12 @@
           "child": [
             {
               "name": "Sub Page 1",
-              "page": "sub-page-1",
+              "page": "sub-pages/sub-page-1",
               "href": "/sub-pages/sub-page-1"
             },
             {
               "name": "Sub Page 2",
-              "page": "sub-page-2",
+              "page": "sub-pages/sub-page-2",
               "href": "/sub-pages/sub-page-2"
             }
           ]
