@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "deps:update": "npx npm-check-updates -u && npm install",
     "monitor": "nodemon ./bin/www",
     "postinstall": "npx gulp",
     "start": "node ./bin/www",

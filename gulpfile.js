@@ -2,27 +2,23 @@ const gulp = require("gulp"),
     rename = require("gulp-rename"),
     fs = require("fs")
 
+function deleteFileIfExists(file) {
+    try {
+        if (fs.existsSync(file)) {
+            fs.unlinkSync(file)
+        } else {
+            console.log("File not found: " + file)
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 function copyVendorLibs(cb) {
-    try {
-        fs.unlinkSync('public/vendor/alpine.min.js')
-    } catch (err) {
-        console.log(err)
-    }
-    try {
-        fs.unlinkSync('public/vendor/list.min.js')
-    } catch (err) {
-        console.log(err)
-    }
-    try {
-        fs.unlinkSync('public/vendor/nprogress/nprogress.js')
-    } catch (err) {
-        console.log(err)
-    }
-    try {
-        fs.unlinkSync('public/vendor/nprogress/nprogress.css')
-    } catch (err) {
-        console.log(err)
-    }
+    deleteFileIfExists('public/vendor/alpine.min.js')
+    deleteFileIfExists('public/vendor/list.min.js')
+    deleteFileIfExists('public/vendor/nprogress/nprogress.js')
+    deleteFileIfExists('public/vendor/nprogress/nprogress.css')
 
     gulp.src('node_modules/alpinejs/dist/cdn.min.js')
         .pipe(rename('alpine.min.js'))
