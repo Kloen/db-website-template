@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "alpinejs": "^3.10.3",
-    "autoprefixer": "^10.4.8",
+    "autoprefixer": "^10.4.9",
     "cssnano": "^5.1.13",
     "gulp": "^4.0.2",
     "gulp-rename": "^2.0.0",
@@ -27,7 +27,7 @@
     "nodemon": "^2.0.19",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.16",
-    "tailwind-scrollbar": "^1.3.1",
+    "tailwind-scrollbar": "^2.0.1",
     "tailwindcss": "^3.1.8"
   }
 }
