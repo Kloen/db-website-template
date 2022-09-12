@@ -1,6 +1,7 @@
 const gulp = require("gulp"),
     rename = require("gulp-rename"),
-    fs = require("fs")
+    fs = require("fs"),
+    exec = require('child_process').exec
 
 function deleteFileIfExists(file) {
     try {
@@ -14,7 +15,7 @@ function deleteFileIfExists(file) {
     }
 }
 
-function copyVendorLibs(cb) {
+gulp.task('postinstall', function(cb) {
     deleteFileIfExists('public/vendor/alpine.min.js')
     deleteFileIfExists('public/vendor/list.min.js')
     deleteFileIfExists('public/vendor/nprogress/nprogress.js')
@@ -22,14 +23,17 @@ function copyVendorLibs(cb) {
 
     gulp.src('node_modules/alpinejs/dist/cdn.min.js')
         .pipe(rename('alpine.min.js'))
-        .pipe(gulp.dest('public/vendor'));
+        .pipe(gulp.dest('public/vendor'))
     gulp.src('node_modules/list.js/dist/list.min.js')
-        .pipe(gulp.dest('public/vendor'));
+        .pipe(gulp.dest('public/vendor'))
     gulp.src('node_modules/nprogress/nprogress.js')
-        .pipe(gulp.dest('public/vendor/nprogress'));
+        .pipe(gulp.dest('public/vendor/nprogress'))
     gulp.src('node_modules/nprogress/nprogress.css')
-        .pipe(gulp.dest('public/vendor/nprogress'));
-    cb()
-}
+        .pipe(gulp.dest('public/vendor/nprogress'))
 
-exports.default = copyVendorLibs
+    exec('npm run tailwindcss', function (err, stdout, stderr) {
+        console.log(stdout)
+        console.log(stderr)
+        cb(err)
+    })
+})

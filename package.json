@@ -5,7 +5,7 @@
   "scripts": {
     "deps:update": "npx npm-check-updates -u && npm install",
     "monitor": "nodemon ./bin/www",
-    "postinstall": "npx gulp",
+    "postinstall": "gulp postinstall",
     "start": "node ./bin/www",
     "tailwindcss": "npx tailwindcss -o public/stylesheets/styles.css --minify"
   },
